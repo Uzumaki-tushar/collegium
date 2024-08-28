@@ -7,9 +7,7 @@ router.get("/",(req,res)=>{
     res.render("index");
 })
 
-router.get("/shop",isloggedIn,(req,res)=>{
-    res.render("shop");
-})
+
 
 router.get("/login",(req,res)=>{
     res.render("login")

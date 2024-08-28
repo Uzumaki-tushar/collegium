@@ -10,14 +10,6 @@ const productSchema = mongoose.Schema({
       type:mongoose.Schema.Types.ObjectId,
         ref:"user"
    },
-   likes:[{
-      type:mongoose.Schema.Types.ObjectId,
-         ref:"user",
-   }],
-   addedtocart:[{
-    type:mongoose.Schema.Types.ObjectId,
-    ref:"user",
-   }],
    ordered:{
     type:mongoose.Schema.Types.ObjectId,
     ref:"user",

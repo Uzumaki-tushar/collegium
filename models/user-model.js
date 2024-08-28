@@ -4,22 +4,22 @@ const userSchema = mongoose.Schema({
     username:String,
     email:String,
     password:String,
-    whishlist:{
+    wishlist:[{
         type:mongoose.Schema.Types.ObjectId,
         ref:"product",
-    },
-    cart:{
+    }],
+    cart:[{
         type:mongoose.Schema.Types.ObjectId,
         ref:"product",
-    },
-    orders:{
+    }],
+    orders:[{
         type:mongoose.Schema.Types.ObjectId,
         ref:"product",
-    },
-    products:{
+    }],
+    products:[{
         type:mongoose.Schema.Types.ObjectId,
         ref:"product",
-    }
+    }],
 })
 
 module.exports = mongoose.model("user",userSchema);
