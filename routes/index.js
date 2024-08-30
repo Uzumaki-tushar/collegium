@@ -4,13 +4,21 @@ const router = express.Router();
 
 
 router.get("/",(req,res)=>{
-    res.render("index");
+    let success= req.flash("success");
+    let error = req.flash("error");
+    res.render("index",{success,error});
+})
+
+router.get("/learnMore",(req,res)=>{
+    res.render("learnMore");
 })
 
 
 
 router.get("/login",(req,res)=>{
-    res.render("login")
+    let success= req.flash("success");
+    let error = req.flash("error");
+    res.render("login",{success,error});
 })
 
 module.exports= router;

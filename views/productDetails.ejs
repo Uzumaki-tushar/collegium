@@ -60,7 +60,10 @@
         </dl>
       </div>
 
-     <button class="w-full bg-blue-500 h-1/6 rounded-full hover:bg-blue-600">Add To Cart</button>
+     <form action="/products/cart/<%= product._id %>" method="post">
+      <input type="submit" class="w-full bg-blue-500 h-[60px] rounded-full hover:bg-blue-600" value="add to cart">
+     </form>
+     
 
         </div>
       </div>

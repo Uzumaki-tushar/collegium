@@ -9,6 +9,22 @@
 </head>
 <body>
 
+  <% if(success.length>0){%>
+    <div class="absolute top-5 left-1/2 -translate-x-1/2 -translate-y-1/2 p-3 rounded-md bg-red-500 ">
+      <span class="inline-block mt-1 mb-1 text-white">
+          <%= success %>
+      </span>
+  </div>
+  <%} %>
+
+  <% if(error.length>0){%>
+    <div class="absolute top-5 left-1/2 -translate-x-1/2 -translate-y-1/2 p-3 rounded-md bg-red-500 ">
+      <span class="inline-block mt-1 mb-1 text-white">
+          <%= error %>
+      </span>
+  </div>
+  <%} %>
+
     <%- include('./partials/headers.ejs') %>
     <section class="bg-gray-900 text-white">
         <div class="mx-auto max-w-screen-xl px-4 py-32 lg:flex lg:h-screen lg:items-center">
@@ -35,7 +51,7 @@
       
               <a
                 class="block w-full rounded border border-blue-600 px-12 py-3 text-sm font-medium text-white hover:bg-blue-600 focus:outline-none focus:ring active:bg-blue-500 sm:w-auto"
-                href="#"
+                href="/learnMore"
               >
                 Learn More
               </a>

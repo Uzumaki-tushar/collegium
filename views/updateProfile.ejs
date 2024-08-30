@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div class="w-full h-screen bg-zinc-900 text-white">
+        <form action="/users/profile/update" method="post" enctype="multipart/form-data">
+            <label class="block mb-2 font-medium">Update Image</label>
+            <input name="image" type="file" class="py-2 px-4 rounded" value="Select File">
+            <input class="px-5 py-2 rounded mt-3 bg-blue-500 text-white" type="submit"
+                        value="Update">
+        </form>
+    </div>
+</body>
+</html>

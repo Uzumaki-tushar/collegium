@@ -10,7 +10,9 @@ module.exports.registerUser= async function(req,res){
         let{username,email,password}=req.body;
 
         let user = await userModel.findOne({email});
-        if(user) return res.status(401).send("you already have an account, please login.");
+        if(user){
+            req.flash("error","you already have an account, please login.");
+        } return res.status(401).redirect("/login");
 
         bcrypt.hash(password, 10, async function(err, hash) {
             // Store hash in your password DB.
@@ -23,11 +25,12 @@ module.exports.registerUser= async function(req,res){
             let token = generateToken(user);
             console.log(token);
             res.cookie("token",token),
-            res.send(user);
+            req.flash("success","your account has been created");
+            res.redirect("/users/profile");
         });
     }
     catch(err){
-        console.log(err.message);
+        res.status(504).send("something unexpected happens");
     }
 }
 
@@ -35,27 +38,35 @@ module.exports.loginUsers= async function(req,res){
     try{
         let {email,password}= req.body;
         let user= await userModel.findOne({email});
-        if(!user) return res.status(401).send("something went wrong");
+        if(!user){
+            req.flash("error","something went wrong");
+            return res.status(401).redirect("/login");
+        }
 
         bcrypt.compare(password, user.password, function(err, result) {
             // result == true
-            if(!result) res.status(401).send("something went wrong");
+            if(!result){
+                req.flash("error","something went wrong");
+               return res.status(401).redirect("/login");
+            } 
             else{
                 let token = generateToken(user);
                 res.cookie("token",token);
-                res.status(200).send("you have logged in");
+                req.flash("success","loggedIn successfully");
+                res.status(200).redirect("/users/profile");
             }
         });
 
     }
     catch(err){
-        console.log(err.message);
+        res.status(504).send("something unexpected happens");
     }
 }
 
 module.exports.logOut = function(req,res){
     if(req.cookies.token){
         res.cookie("token","");
+        req.flash("success","logout successfully");
         res.redirect("/");
     }
     else{
