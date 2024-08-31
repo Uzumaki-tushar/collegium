@@ -18,6 +18,8 @@ module.exports.createProduct= async function(req,res){
         user.products.push(product._id);
         await user.save();
         req.flash("success","product is created successfully");
+
+        
     
         res.redirect("/products");
     }

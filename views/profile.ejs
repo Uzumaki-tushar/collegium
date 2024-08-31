@@ -72,7 +72,7 @@
                                 </div>
                             </a>
                             <div class="bg-gray-50 md:bg-white md:shadow-lg dark:bg-gray-900 md:dark:bg-gray-800">
-                                <a href='#'>
+                                <a href='/products/details/<%= product._id %>'>
                                     <div class="p-4">
                                        <div class="flex justify-between">
                                         <p
@@ -90,7 +90,7 @@
                                             </p>
                                             
                                         </div>
-                                        <a href="/products/details/<%= product._id %>" class="text-blue-300 text-sm mt-3">View Product</a>
+
                                     </div>
                                 </a>
                                 <div class="flex items-center justify-between p-2 md:p-4 mx-2 md:mx-4">
@@ -108,6 +108,60 @@
                         </div>
                     </div>
                 <%}) %>
+
+
+                <p
+					class="mb-5 font-bold text-xl md:text-5xl md:mt-6 text-center text-gray-900 dark:text-white">
+					Posts from
+					<%= user.username%></p>
+
+                    <% user.posts.forEach((post)=>{ %>
+                        <div class="mx-auto px-4 py-4 max-w-xl my-auto">
+                            <div class="bg-gray-50 md:bg-white md:shadow-xl md:rounded-lg mb-6">
+                                <a href='#'>
+                                    <div class="">
+        
+        
+                                    </div>
+                                </a>
+                                <div class="bg-gray-50 md:bg-white md:shadow-lg dark:bg-gray-900 md:dark:bg-gray-800">
+                                    <a href='#'>
+                                        <div class="p-4">
+                                           <div class="flex justify-between">
+                                            <p
+                                            class="truncate font-bold mb-2 md:mt-2 text-2xl text-gray-600 dark:text-gray-200 tracking-normal">
+                                            <%=post.title %></p>
+
+                                           </div>
+                                           
+                                                
+                                            <div class="break-words text-sm text-gray-600 dark:text-gray-400 ">
+                                                <p>
+                                                    <p>&nbsp;</p>
+        
+                                                    <p> <%= post.content %> </p>
+                                                </p>
+                                                
+                                            </div>
+                                            
+                                        </div>
+                                    </a>
+                                    <div class="flex items-center justify-between p-2 md:p-4 mx-2 md:mx-4">
+                                        <a href='#'>
+                                            <div class="flex items-center ml-2">
+                                                <div class="text-xs ml-2 text-left text-gray-600 dark:text-gray-400">
+                                                    <p>@<%=user.username%> </p>
+                                                    <p>23 Aug, 2021</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <%}) %>
+
 
 			</div>
 		</div>

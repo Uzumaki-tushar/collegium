@@ -55,7 +55,10 @@ router.get("/wishlist/remove/:id",isloggedIn, async (req,res)=>{
 
 router.get("/profile",isloggedIn,async (req,res)=>{
     let success= req.flash("success")
-    let user = await userModel.findOne({email:req.user.email}).populate("products");
+    let user = await userModel.findOne({email:req.user.email})
+    .populate("products")
+    .populate("posts");
+
     res.render("profile",{user,success});
 })
 
