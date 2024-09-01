@@ -16,6 +16,14 @@
       </div>
       <%} %>
 
+    <% if(error.length>0){%>
+        <div class="absolute top-5 left-1/2 -translate-x-1/2 -translate-y-1/2 p-3 rounded-md bg-red-500 ">
+          <span class="inline-block mt-1 mb-1 text-white">
+              <%= error %>
+          </span>
+      </div>
+      <%} %>
+
     <%- include('./partials/headers.ejs') %>
     <!-- component -->
 <div class="font-sans antialiased bg-gray-50 dark:bg-gray-900">
@@ -49,65 +57,14 @@
 											comedy.</p>
 									</p>
 								</div>
+
+                                <a href="/posts/create" class="text-blue-600">create post</a>
 								
 							</div>
 						</div>
 					</div>
 				</div>
 
-
-				<p
-					class="mb-5 font-bold text-xl md:text-5xl md:mt-6 text-center text-gray-900 dark:text-white">
-					Products from
-					<%= user.username%></p>
-
-
-				<% user.products.forEach((product)=>{ %>
-                    <div class="mx-auto px-4 py-4 max-w-xl my-auto">
-                        <div class="bg-gray-50 md:bg-white md:shadow-xl md:rounded-lg mb-6">
-                            <a href='#'>
-                                <div class="">
-    
-    
-                                </div>
-                            </a>
-                            <div class="bg-gray-50 md:bg-white md:shadow-lg dark:bg-gray-900 md:dark:bg-gray-800">
-                                <a href='/products/details/<%= product._id %>'>
-                                    <div class="p-4">
-                                       <div class="flex justify-between">
-                                        <p
-                                        class="truncate font-bold mb-2 md:mt-2 text-2xl text-gray-600 dark:text-gray-200 tracking-normal">
-                                        <%=product.productname %></p>
-                                        <img class="overflow-hidden object-cover w-10 h-10 md:w-12 md:h-12 rounded " src="data:image/jpeg;base64,<%= product.image.toString('base64') %>">
-                                       </div>
-                                       <p class="text-white"> Price:<%= product.price %> </p>
-                                            
-                                        <div class="break-words text-sm text-gray-600 dark:text-gray-400 ">
-                                            <p>
-                                                <p>&nbsp;</p>
-    
-                                                <p> <%= product.description %> </p>
-                                            </p>
-                                            
-                                        </div>
-
-                                    </div>
-                                </a>
-                                <div class="flex items-center justify-between p-2 md:p-4 mx-2 md:mx-4">
-                                    <a href='#'>
-                                        <div class="flex items-center ml-2">
-                                            <div class="text-xs ml-2 text-left text-gray-600 dark:text-gray-400">
-                                                <p>ahampriyanshu@gmail.com</p>
-                                                <p>23 Aug, 2021</p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                <%}) %>
 
 
                 <p
@@ -131,6 +88,8 @@
                                             <p
                                             class="truncate font-bold mb-2 md:mt-2 text-2xl text-gray-600 dark:text-gray-200 tracking-normal">
                                             <%=post.title %></p>
+                                            <a href="/posts/deletepost/<%=post._id %>" class="text-red-600">delete</a>
+                                            <a href="/posts/edit/<%=post._id %>" class="text-green-400">edit</a>
 
                                            </div>
                                            

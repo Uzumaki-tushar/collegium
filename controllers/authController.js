@@ -12,7 +12,8 @@ module.exports.registerUser= async function(req,res){
         let user = await userModel.findOne({email});
         if(user){
             req.flash("error","you already have an account, please login.");
-        } return res.status(401).redirect("/login");
+            return res.status(401).redirect("/login");
+        } 
 
         bcrypt.hash(password, 10, async function(err, hash) {
             // Store hash in your password DB.
@@ -23,7 +24,7 @@ module.exports.registerUser= async function(req,res){
             })
     
             let token = generateToken(user);
-            console.log(token);
+            // console.log(token);
             res.cookie("token",token),
             req.flash("success","your account has been created");
             res.redirect("/users/profile");

@@ -54,12 +54,13 @@ router.get("/wishlist/remove/:id",isloggedIn, async (req,res)=>{
 })
 
 router.get("/profile",isloggedIn,async (req,res)=>{
-    let success= req.flash("success")
+    let success= req.flash("success");
+    let error= req.flash("error");
     let user = await userModel.findOne({email:req.user.email})
     .populate("products")
     .populate("posts");
 
-    res.render("profile",{user,success});
+    res.render("profile",{user,success,error});
 })
 
 router.get("/profile/update",isloggedIn,(req,res)=>{

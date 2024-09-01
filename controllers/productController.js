@@ -36,6 +36,9 @@ module.exports.addtoCart = async function(req,res){
     
         if(user.products.indexOf(product._id)==-1){
             if(user.cart.indexOf(product._id)==-1){
+                if(user.wishlist.indexOf(product._id!=-1)){
+                    user.wishlist.splice(user.wishlist.indexOf(product._id),1);
+                }
                 user.cart.push(product._id);
                 await user.save();
                 req.flash("success","added to cart");
