@@ -6,7 +6,11 @@ const router = express.Router();
 router.get("/",(req,res)=>{
     let success= req.flash("success");
     let error = req.flash("error");
-    res.render("index",{success,error});
+    const findEle=(id)=>{
+        let ob= document.querySelector('#id');
+        console.log(ob);
+    }
+    res.render("index",{success,error,findEle});
 })
 
 router.get("/learnMore",(req,res)=>{

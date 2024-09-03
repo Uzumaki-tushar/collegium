@@ -64,13 +64,24 @@ router.get("/profile",isloggedIn,async (req,res)=>{
 })
 
 router.get("/profile/update",isloggedIn,(req,res)=>{
-    res.render("updateProfile");
+    let error = req.flash("error");
+    res.render("updateProfile",{error});
 })
 
 router.post("/profile/update",isloggedIn,upload.single("image"), async (req,res)=>{
     let user= await userModel.findOne({email:req.user.email});
+    let {phoneNumber,Year,about}= req.body;
+    // console.log(req.body);
+    if(!req.file){
+        req.flash("error","image required");
+        return res.redirect("/users/profile/update");
+    }
     user.image=req.file.buffer;
+    user.phoneNumber=phoneNumber;
+    user.Year = Year;
+    user.about=about;
     await user.save();
+    req.flash("success","updated successfully");
     res.redirect("/users/profile")
 })
 

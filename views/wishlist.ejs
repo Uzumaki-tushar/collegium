@@ -8,12 +8,16 @@
 </head>
 <body>
     <% if(success.length>0){%>
-        <div class="absolute top-5 left-1/2 -translate-x-1/2 -translate-y-1/2 p-3 rounded-md bg-red-500 ">
+        <div id="flashMessage" class="absolute top-5 left-1/2 -translate-x-1/2 -translate-y-1/2 p-3 rounded-md bg-red-500 ">
           <span class="inline-block mt-1 mb-1 text-white">
               <%= success %>
           </span>
       </div>
       <%} %>
+    
+      
+
+
     <%- include('./partials/headers.ejs') %>
 
     <div class="font-sans max-w-5xl max-md:max-w-xl mx-auto bg-white py-4">
@@ -69,6 +73,25 @@
 
         </div>
     </div>
+
+
+    <script>
+        // Function to hide flash messages with fade-out effect
+        function hideFlashMessage(elementId) {
+            const element = document.getElementById(elementId);
+            if (element) {
+                element.style.transition = 'opacity 0.5s ease'; // Set transition effect
+                element.style.opacity = '0'; // Start fading out
+                setTimeout(() => {
+                    element.style.display = 'none'; // Remove from view after fade
+                }, 500); // Delay matches the transition duration
+            }
+        }
+  
+        // Trigger the hide function after 4 seconds for both messages
+        setTimeout(() => hideFlashMessage('flashMessage'), 2000);
+        setTimeout(() => hideFlashMessage('flashMessageError'), 2000);
+    </script>
     
 </body>
 </html>

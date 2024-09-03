@@ -20,7 +20,7 @@ router.post("/cart/:id",isloggedIn, addtoCart);
 router.get("/wishlist/:id",isloggedIn, addtoWishlist);
 
 router.get("/details/:id",isloggedIn, async (req,res)=>{
-    let product = await productModel.findOne({_id:req.params.id});
+    let product = await productModel.findOne({_id:req.params.id}).populate("owner");
     res.render("productDetails",{product});
 })
 

@@ -10,7 +10,7 @@
 <body>
   
   <% if(success.length>0){%>
-    <div class="absolute top-5 left-1/2 -translate-x-1/2 -translate-y-1/2 p-3 rounded-md bg-red-500 ">
+    <div id="flashMessage" class="absolute top-5 left-1/2 -translate-x-1/2 -translate-y-1/2 p-3 rounded-md bg-red-500 ">
       <span class="inline-block mt-1 mb-1 text-white">
           <%= success %>
       </span>
@@ -18,7 +18,7 @@
   <%} %>
 
   <% if(error.length>0){%>
-    <div class="absolute top-5 left-1/2 -translate-x-1/2 -translate-y-1/2 p-3 rounded-md bg-red-500 ">
+    <div id="flashMessageError" class="absolute top-5 left-1/2 -translate-x-1/2 -translate-y-1/2 p-3 rounded-md bg-red-500 ">
       <span class="inline-block mt-1 mb-1 text-white">
           <%= error %>
       </span>
@@ -35,7 +35,7 @@
       <div class="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 w-full translate-x-4">
        
         <% products.forEach((product)=>{ %>
-          <div  class="group relative block overflow-hidden rounded-md bg-[#0d9488]">
+          <div  class="group relative block overflow-hidden rounded-lg bg-[#0d9488]  ">
             <button onclick="window.location.href = '/products/wishlist/<%=product._id %>'"
             class="absolute end-4 top-4 z-10 rounded-full bg-white p-1.5 text-gray-900 transition hover:text-gray-900/75 z-99">
             <% if(user.wishlist.indexOf(product._id)==-1){ %>
@@ -101,6 +101,24 @@
     </div>
   </div>
   
+
+  <script>
+    // Function to hide flash messages with fade-out effect
+    function hideFlashMessage(elementId) {
+        const element = document.getElementById(elementId);
+        if (element) {
+            element.style.transition = 'opacity 0.5s ease'; // Set transition effect
+            element.style.opacity = '0'; // Start fading out
+            setTimeout(() => {
+                element.style.display = 'none'; // Remove from view after fade
+            }, 500); // Delay matches the transition duration
+        }
+    }
+
+    // Trigger the hide function after 4 seconds for both messages
+    setTimeout(() => hideFlashMessage('flashMessage'), 2000);
+    setTimeout(() => hideFlashMessage('flashMessageError'), 2000);
+</script>
     
 </body>
 </html>

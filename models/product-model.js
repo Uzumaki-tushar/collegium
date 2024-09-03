@@ -13,7 +13,11 @@ const productSchema = mongoose.Schema({
    ordered:{
     type:mongoose.Schema.Types.ObjectId,
     ref:"user",
-   }
+   },
+   date:{
+      type:Date,
+      default:Date.now()
+  },
 })
 
 module.exports = mongoose.model("product",productSchema);

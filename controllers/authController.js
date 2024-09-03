@@ -9,6 +9,11 @@ module.exports.registerUser= async function(req,res){
     try{
         let{username,email,password}=req.body;
 
+        if(username=='' || email=='' || password==''){
+            req.flash("error","all feilds are mandotary");
+            return res.redirect("/login");
+        }
+
         let user = await userModel.findOne({email});
         if(user){
             req.flash("error","you already have an account, please login.");
@@ -31,7 +36,8 @@ module.exports.registerUser= async function(req,res){
         });
     }
     catch(err){
-        res.status(504).send("something unexpected happens");
+        res.flash("error","something unexpected happens");
+        res.status(504).redirect("/login");
     }
 }
 

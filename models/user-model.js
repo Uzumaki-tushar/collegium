@@ -5,6 +5,9 @@ const userSchema = mongoose.Schema({
     username:String,
     email:String,
     password:String,
+    phoneNumber:Number,
+    Year:String,
+    about:String,
     posts:[{
         type:mongoose.Schema.Types.ObjectId,
         ref:"post",
@@ -25,6 +28,10 @@ const userSchema = mongoose.Schema({
         type:mongoose.Schema.Types.ObjectId,
         ref:"product",
     }],
+    date:{
+        type:Date,
+        default:Date.now()
+    },
 })
 
 module.exports = mongoose.model("user",userSchema);
