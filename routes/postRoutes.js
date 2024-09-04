@@ -75,7 +75,7 @@ router.get("/deletepost/:id",isloggedIn, async (req,res)=>{
     }
 })
 
-router.post("/posts/edit/:id",isloggedIn,async (req,res)=>{
+router.post("/edit/:id",isloggedIn,async (req,res)=>{
     let post = await postModel.findOneAndUpdate({_id:req.params.id},{content:req.body.content},{new:true});
     res.redirect("/users/profile");
 })
