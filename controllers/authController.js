@@ -14,6 +14,17 @@ module.exports.registerUser= async function(req,res){
             return res.redirect("/login");
         }
 
+        let passwordLength= password.length;
+        if(passwordLength>15){
+            req.flash("error","password tooo long");
+            return res.redirect("/login");
+        }
+        else if(passwordLength<4){
+            req.flash("error","password tooo short");
+            return res.redirect("/login");
+        }
+        
+
         let user = await userModel.findOne({email});
         if(user){
             req.flash("error","you already have an account, please login.");
