@@ -3,6 +3,7 @@ const app = express();
 const path = require("path");
 const userRouter = require("./routes/usersRoutes");
 const productRouter = require("./routes/productsRoutes");
+const adminRouter=require("./routes/adminRoutes");
 const postRouter = require("./routes/postRoutes");
 const indexRouter = require("./routes/index");
 const cookieParser = require("cookie-parser");
@@ -31,5 +32,6 @@ app.use("/",indexRouter);
 app.use("/users",userRouter);
 app.use("/products",productRouter);
 app.use("/posts",postRouter);
+// app.use("/admin",adminRouter);
 
 app.listen(3000);

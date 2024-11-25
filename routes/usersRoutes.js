@@ -13,19 +13,21 @@ router.get("/",isloggedIn,(req,res)=>{
 })
 
 router.get("/cart",isloggedIn,async (req,res)=>{
+    let isLogged=true;
     let user = await userModel.findOne({email:req.user.email}).populate("cart");
     let success = req.flash("success");
 
     let totalSum=0;
-    user.cart.forEach((product)=>{
+    user.cart.forEach((product)=>{  
         totalSum+=product.discount;
     })
 
-    res.render("cart",{user,totalSum,success});
+    res.render("cart",{user,totalSum,success,isLogged});
 
 })
 
 router.get("/wishlist",isloggedIn,async (req,res)=>{
+    let isLogged=true;
     let user = await userModel.findOne({email:req.user.email}).populate("wishlist");
     let success = req.flash("success");
     let totalSum=0;
@@ -33,11 +35,12 @@ router.get("/wishlist",isloggedIn,async (req,res)=>{
         totalSum+=product.discount;
     })
 
-    res.render("wishlist",{user,totalSum,success});
+    res.render("wishlist",{user,totalSum,success,isLogged});
 
 })
 
 router.get("/cart/remove/:id",isloggedIn, async (req,res)=>{
+    // let islogged=true;
     let user= await userModel.findOne({email:req.user.email});
     user.cart.splice(user.cart.indexOf(req.params.id),1);
     await user.save();
@@ -54,13 +57,14 @@ router.get("/wishlist/remove/:id",isloggedIn, async (req,res)=>{
 })
 
 router.get("/profile",isloggedIn,async (req,res)=>{
+    let isLogged=true;
     let success= req.flash("success");
     let error= req.flash("error");
     let user = await userModel.findOne({email:req.user.email})
     .populate("products")
     .populate("posts");
 
-    res.render("profile",{user,success,error});
+    res.render("profile",{user,success,error,isLogged});
 })
 
 router.get("/profile/update",isloggedIn,(req,res)=>{
@@ -86,8 +90,9 @@ router.post("/profile/update",isloggedIn,upload.single("image"), async (req,res)
 })
 
 router.get("/product",isloggedIn, async(req,res)=>{
+    let isLogged=true;
     let user= await userModel.findOne({email:req.user.email}).populate("products");
-    res.render("yourProduct",{user});
+    res.render("yourProduct",{user,isLogged});
 })
 
 router.post("/product/delete/:id",isloggedIn,async (req,res)=>{

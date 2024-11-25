@@ -1,6 +1,6 @@
 const userModel = require("../models/user-model");
+const adminModel=require("../models/admin-model.js");
 const jwt = require("jsonwebtoken");
-
 const bcrypt = require("bcrypt");
 const {generateToken}= require("../utils/generateToken.js");
 
@@ -92,3 +92,4 @@ module.exports.logOut = function(req,res){
         res.redirect("/");
     }
 }
+

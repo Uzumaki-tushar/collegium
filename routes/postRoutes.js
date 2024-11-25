@@ -5,8 +5,9 @@ const userModel = require("../models/user-model");
 const postModel = require("../models/post-model");
 
 router.get("/create",isloggedIn,async (req,res)=>{
+    let isLogged=true;
     let user = await userModel.findOne({email:req.user.email});
-    res.render("createPost",{user});
+    res.render("createPost",{user,isLogged});
 })
 
 router.post("/create",isloggedIn,async (req,res)=>{
@@ -36,13 +37,14 @@ catch(err){
 })
 
 router.get("/",isloggedIn, async (req,res)=>{
+    let isLogged=true;
     let allPost = await postModel.find();
     let allUsers = await userModel.find();
 
 
     // console.log(req.user);
     let user = req.user;
-    res.render("post",{allPost,allUsers,user});
+    res.render("post",{allPost,allUsers,user,isLogged});
 })
 
 router.get("/like/:id",isloggedIn, async (req,res)=>{

@@ -93,11 +93,12 @@ module.exports.addtoWishlist = async function(req,res){
 
 module.exports.showShop = async function(req,res){
     try{
+        let isLogged=true;
         let success = req.flash("success");
         let error = req.flash("error");
         let products= await productModel.find();
         let user = await userModel.findOne({email:req.user.email});
-        res.render("shop",{products,user,success,error});
+        res.render("shop",{products,user,success,error,isLogged});
     }
     catch(err){
         req.flash("error","something went wrong");

@@ -24,6 +24,7 @@
       
             <div class="md:flex md:items-center md:gap-12">
               <nav aria-label="Global" class="hidden md:block">
+               <%if(isLogged){%>
                 <ul class="flex items-center gap-6 text-sm">
 
 
@@ -93,9 +94,11 @@
 
 
                 </ul>
+               <%}%>
               </nav>
       
               <div class="flex items-center gap-4">
+               <%if(!isLogged){%>
                 <div class="sm:flex sm:gap-4">
                   <a
                     class="rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white shadow dark:hover:bg-teal-500"
@@ -103,16 +106,19 @@
                   >
                     Login
                   </a>
-      
-                  <div class="hidden sm:flex">
-                    <a
-                      class="rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-teal-600 dark:bg-gray-800 dark:text-white dark:hover:text-white/75"
-                      href="/users/logout"
-                    >
-                      Logout
-                    </a>
-                  </div>
                 </div>
+               <%}%>
+               <%if(isLogged){%>
+                <div class="hidden sm:flex">
+                  <a
+                    class="rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-teal-600 dark:bg-gray-800 dark:text-white dark:hover:text-white/75"
+                    href="/users/logout"
+                  >
+                    Logout
+                  </a>
+                </div>
+               <%}%>
+
       
                 <div class="block md:hidden">
                   <button
