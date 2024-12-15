@@ -5,6 +5,7 @@ const userRouter = require("./routes/usersRoutes");
 const productRouter = require("./routes/productsRoutes");
 const adminRouter=require("./routes/adminRoutes");
 const postRouter = require("./routes/postRoutes");
+const paymentRoute=require("./routes/paymentRoutes")
 const indexRouter = require("./routes/index");
 const cookieParser = require("cookie-parser");
 const db = require("./config/mongoose-connection");
@@ -23,7 +24,6 @@ app.use(
     resave: false,
     saveUninitialized: false,
     secret: process.env.EXPRESS_SESSION_SECRET,
-    
   }))
 app.use(flash());
 
@@ -32,6 +32,7 @@ app.use("/",indexRouter);
 app.use("/users",userRouter);
 app.use("/products",productRouter);
 app.use("/posts",postRouter);
-// app.use("/admin",adminRouter);
+app.use("/admin",adminRouter);
+app.use("/payment",paymentRoute);
 
 app.listen(3000);

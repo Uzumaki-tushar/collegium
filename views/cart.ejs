@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 </head>
 <body>
 
@@ -75,7 +76,8 @@
                 </ul>
 
                 <div class="mt-6 space-y-3">
-                    <button  onclick="window.location.href='/'"  class="text-sm px-4 py-2.5 w-full font-semibold tracking-wide bg-gray-800 hover:bg-gray-900 text-white rounded-md">Checkout</button>
+                    <button  onclick="window.location.href='/payment/createOrder'"  class="text-sm px-4 py-2.5 w-full font-semibold tracking-wide bg-gray-800 hover:bg-gray-900 text-white rounded-md">Checkout</button>
+                    <!-- <button    class="pay-form text-sm px-4 py-2.5 w-full font-semibold tracking-wide bg-gray-800 hover:bg-gray-900 text-white rounded-md">Checkout</button> -->
                     <button onclick="window.location.href='/products'" class="text-sm px-4 py-2.5 w-full font-semibold tracking-wide bg-transparent text-gray-800 border border-gray-300 rounded-md">Continue Shopping  </button>
                 </div>
             </div>
@@ -99,7 +101,16 @@
         // Trigger the hide function after 4 seconds for both messages
         setTimeout(() => hideFlashMessage('flashMessage'), 2000);
         setTimeout(() => hideFlashMessage('flashMessageError'), 2000);
+
+        // $(document).ready(function(){
+        //     $('.pay-form').submit(function(e)){
+        //         e.preventDefault();
+
+                
+        //     }
+        // })
     </script>
+
     
 </body>
 
