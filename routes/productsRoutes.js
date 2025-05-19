@@ -26,4 +26,39 @@ router.get("/details/:id",isloggedIn, async (req,res)=>{
     res.render("productDetails",{product,isLogged});
 })
 
+router.get('/search',isloggedIn, async (req, res) => {
+    const query = req.query.q || '';
+    let isLogged=true;
+    let success = req.flash("success");
+    let error = req.flash("error");
+    try {
+      const products = await productModel.find({
+        productname: { $regex: query, $options: 'i' }
+      });
+  
+      res.render('shop', {
+        products,
+        success: '',
+        error: '',
+        user: req.user,
+        searchQuery: query,
+        isLogged,
+        success,
+        error
+      });
+    } catch (err) {
+      res.render('shop', {
+        products: [],
+        success: '',
+        error: 'Error searching products',
+        user: req.user,
+        searchQuery: query,
+        isLogged,
+        error,
+        success
+      });
+    }
+  });
+  
+
 module.exports = router;

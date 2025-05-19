@@ -7,7 +7,7 @@ module.exports.transporter = nodemailer.createTransport({
   port: 465,
   auth:{
     user:"tushar2471.be22@chitkara.edu.in",
-    pass:"ocgh saee ehpz mkwr"
+    pass:"qgmn udtf kcvo inpi"
   }
 });
 
